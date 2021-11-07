@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+# Spring ####################################
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/renfeid?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 10
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+# 自定义配置 ####################################
+system:
+  leaf:
+    segment:
+      enable: true
+    snowflake:
+      enable: false
+      zk:
+        address: xxx
+      port: 1111

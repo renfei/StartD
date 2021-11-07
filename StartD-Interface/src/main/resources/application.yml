@@ -1,0 +1,35 @@
+# Spring ####################################
+spring:
+  profiles:
+    ## 运行环境配置
+    active: @activatedProperties@
+  jpa:
+    hibernate:
+      ddl-auto: update # 实体类中的修改会同步到数据库表结构中，慎用
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        show_sql: false # 可开启 hibernate 生成的 sql，方便调试
+        format_sql: true
+logging:
+  level:
+    root: info # 是否需要开启 sql 参数日志
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
+    org.hibernate.engine.QueryParameters: debug
+    org.hibernate.engine.query.HQLQueryPlan: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+# MyBatis ###################################
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    ## 开启驼峰命名
+    map-underscore-to-camel-case: true
+    ## 打印SQL
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
